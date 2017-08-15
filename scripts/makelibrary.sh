@@ -1,5 +1,5 @@
 #!/bin/bash
-FILES=./zims/*.zim
+FILES=../zims/*.zim
 LIBRARY_PATH=/library.xml
 
 for f in $FILES
