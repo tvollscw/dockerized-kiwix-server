@@ -2,7 +2,7 @@ FROM alpine:latest
 LABEL maintainer Jan Szumiec <jan.szumiec@gmail.com>
 RUN apk add --no-cache curl bzip2
 WORKDIR /
-RUN curl -k https://ftp.fau.de/kiwix/bin/0.10/kiwix-0.10-linux-x86_84.tar.bz2 | tar -xj
+RUN curl -k https://ftp.fau.de/kiwix/nightly/2017-08-13/kiwix-tools_linux64_2017-08-13.tar.gz | tar -xj
 RUN mv kiwix-* /kiwix
 WORKDIR /kiwix-data
 VOLUME /kiwix-data
