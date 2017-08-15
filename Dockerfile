@@ -1,12 +1,10 @@
-FROM alpine:latest
-LABEL maintainer Jan Szumiec <jan.szumiec@gmail.com>
-RUN apk add --no-cache curl bzip2
+FROM ubuntu:xenial
+RUN apt-get update
+RUN apt-get install -y wget
 WORKDIR /
-RUN curl -k https://ftp.fau.de/kiwix/nightly/2017-08-13/kiwix-tools_linux64_2017-08-13.tar.gz | tar -xj
-RUN mv kiwix-* /kiwix
-WORKDIR /kiwix-data
-VOLUME /kiwix-data
+COPY ./zims ./zims
+COPY ./scripts ./scripts
+RUN ./scripts/provision.sh
+RUN ./scripts/makelibrary.sh
 EXPOSE 8080
-ENTRYPOINT ["/kiwix/bin/kiwix-serve", "--port", "8080"]
-
-
+ENTRYPOINT ["kiwix-serve", "--port",  "8080", "--library", "/library.xml"]
